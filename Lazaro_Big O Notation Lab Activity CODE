@@ -1,0 +1,305 @@
+O(1) - Constant Time
+
+using System;
+using System.Collections.Generic; // needed for Dictionary
+using System.Windows.Forms;
+
+namespace BigONotationLab
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent(); // auto-generated in Form1.Designer.cs
+        }
+
+        // O(1) Example 1: Check if a Number is Even
+        private void btnO1Example1_Click(object sender, EventArgs e)
+        {
+            int number = 42;
+            bool isEven = (number % 2 == 0);
+            lblO1Result.Text = number + " is even? " + isEven;
+        }
+
+        // O(1) Example 2: Dictionary Lookup
+        private void btnO1Example2_Click(object sender, EventArgs e)
+        {
+            var ages = new Dictionary<string, int>()
+            {
+                { "Alice", 20 },
+                { "Bob", 25 },
+                { "Charlie", 30 }
+            };
+
+            lblO1Result.Text = "Bob’s age: " + ages["Bob"];
+        }
+
+        // O(1) Example 3: Boolean Flag
+        private void btnO1Example3_Click(object sender, EventArgs e)
+        {
+            bool isLoggedIn = true;
+            lblO1Result.Text = "User logged in? " + isLoggedIn;
+        }
+    }
+}
+
+
+O(log n) - Logarithmic
+
+using System;
+using System.Windows.Forms;
+
+namespace BigONotationLab2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        // Example 1: Exponent Doubling
+        private void btnOlogExample1_Click(object sender, EventArgs e)
+        {
+            int number = 1;
+            int target = 1000;
+            int steps = 0;
+
+            while (number < target)
+            {
+                number *= 2;
+                steps++;
+            }
+
+            lblOlogResult.Text = $"Reached {target} in {steps} doublings.";
+        }
+
+        // Example 2: String Halving
+        private void btnOlogExample2_Click(object sender, EventArgs e)
+        {
+            string text = "LogarithmicExampleString";
+            int steps = 0;
+
+            while (text.Length > 1)
+            {
+                text = text.Substring(0, text.Length / 2);
+                steps++;
+            }
+
+            lblOlogResult.Text = $"Reduced string to length 1 in {steps} steps.";
+        }
+
+        // Example 3: Balanced Tree Depth
+        private void btnOlogExample3_Click(object sender, EventArgs e)
+        {
+            int nodes = 1024; // pretend this is a balanced binary tree
+            int depth = (int)Math.Log(nodes, 2);
+
+            lblOlogResult.Text = $"Tree with {nodes} nodes has depth {depth}.";
+        }
+    }
+}
+
+O(n) - Linear
+
+using System;
+using System.Windows.Forms;
+
+namespace BigONotationLab3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        // O(n) Example 1: Sum Array
+        private void btnOnExample1_Click(object sender, EventArgs e)
+        {
+            int[] numbers = { 1, 2, 3, 4, 5 };
+            int sum = 0;
+
+            foreach (int num in numbers)
+            {
+                sum += num;
+            }
+
+            lblOnResult.Text = $"Sum of array = {sum}";
+        }
+
+        // O(n) Example 2: Count Characters
+        private void btnOnExample2_Click(object sender, EventArgs e)
+        {
+            string text = "LinearTimeExample";
+            int count = 0;
+
+            foreach (char c in text)
+            {
+                count++;
+            }
+
+            lblOnResult.Text = $"String length = {count}";
+        }
+
+        // O(n) Example 3: Find Max
+        private void btnOnExample3_Click(object sender, EventArgs e)
+        {
+            int[] numbers = { 12, 45, 67, 23, 89, 34 };
+            int max = numbers[0];
+
+            foreach (int num in numbers)
+            {
+                if (num > max)
+                    max = num;
+            }
+
+            lblOnResult.Text = $"Maximum value = {max}";
+        }
+    }
+}
+
+O(n²) - Quadratic
+
+using System;
+using System.Windows.Forms;
+
+namespace BigONotationLab4
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        // O(n²) Example 1: Multiplication Table
+        private void btnOn2Example1_Click(object sender, EventArgs e)
+        {
+            int size = 5;
+            string output = "";
+
+            for (int i = 1; i <= size; i++)
+            {
+                for (int j = 1; j <= size; j++)
+                {
+                    output += $"{i * j}\t";
+                }
+                output += Environment.NewLine;
+            }
+
+            lblOn2Result.Text = output;
+        }
+
+        // O(n²) Example 2: All Pairs
+        private void btnOn2Example2_Click(object sender, EventArgs e)
+        {
+            int[] arr = { 1, 2, 3, 4 };
+            string output = "";
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    output += $"({arr[i]}, {arr[j]}) ";
+                }
+                output += Environment.NewLine;
+            }
+
+            lblOn2Result.Text = output;
+        }
+
+        // O(n²) Example 3: Duplicate Check
+        private void btnOn2Example3_Click(object sender, EventArgs e)
+        {
+            int[] arr = { 2, 4, 6, 8, 4 };
+            bool hasDuplicate = false;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = i + 1; j < arr.Length; j++)
+                {
+                    if (arr[i] == arr[j])
+                    {
+                        hasDuplicate = true;
+                        break;
+                    }
+                }
+            }
+
+            lblOn2Result.Text = $"Array has duplicate? {hasDuplicate}";
+        }
+    }
+}
+
+O(2ⁿ) - Exponential
+
+using System;
+using System.Windows.Forms;
+
+namespace BigONotationLab5
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        // O(2ⁿ) Example 1: Fibonacci (recursive)
+        private void btnO2nExample1_Click(object sender, EventArgs e)
+        {
+            int n = 10;
+            int result = Fibonacci(n);
+            lblO2nResult.Text = $"Fibonacci({n}) = {result}";
+        }
+
+        private int Fibonacci(int n)
+        {
+            if (n <= 1) return n;
+            return Fibonacci(n - 1) + Fibonacci(n - 2);
+        }
+
+        // O(2ⁿ) Example 2: Subsets
+        private void btnO2nExample2_Click(object sender, EventArgs e)
+        {
+            int[] arr = { 1, 2, 3 };
+            string output = "";
+            GenerateSubsets(arr, 0, "", ref output);
+            lblO2nResult.Text = output;
+        }
+
+        private void GenerateSubsets(int[] arr, int index, string current, ref string output)
+        {
+            if (index == arr.Length)
+            {
+                output += $"[{current}] ";
+                return;
+            }
+            // Include element
+            GenerateSubsets(arr, index + 1, current + arr[index] + " ", ref output);
+            // Exclude element
+            GenerateSubsets(arr, index + 1, current, ref output);
+        }
+
+        // O(2ⁿ) Example 3: Boolean Combinations
+        private void btnO2nExample3_Click(object sender, EventArgs e)
+        {
+            int n = 4;
+            string output = "";
+            GenerateCombinations(n, "", ref output);
+            lblO2nResult.Text = output;
+        }
+
+        private void GenerateCombinations(int n, string current, ref string output)
+        {
+            if (current.Length == n)
+            {
+                output += current + " ";
+                return;
+            }
+            GenerateCombinations(n, current + "0", ref output);
+            GenerateCombinations(n, current + "1", ref output);
+        }
+    }
+}
